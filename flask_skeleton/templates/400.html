@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{%block title%}
+{{_('400 Bad Request')}}
+{%endblock%}
+{%block nav%}
+{%endblock%}
+{% block body%}
+
+<h1>{{_('400 Bad Request')}}</h1>
+  <p>{{_('Please try to login again')}}</p>
+  <p><a href="{{ url_for('security.login') }}">{{_('Login')}}</a></p>
+  <p>{{_('if the problem continues, Please try this tips:')}}</p>
+  <ul>
+    <li>{{_("Check for errors in the URL. The most common reason for a 400 Bad Request error is because the URL was typed wrong or the link that was clicked on points to a malformed URL with a specific kind of mistake in it, like a syntax problem.")}}</li>
+    <li>{{_("Clear your browser's cookies, especially if you're getting a Bad Request error with a Google service. Many sites report a 400 error when a cookie it's reading is corrupt or too old.")}}</li>
+    <li>{{_("Clear your DNS cache, which should fix the 400 Bad Request error if it's being caused by outdated DNS records that your computer is storing. Do this in Windows by executing ipconfig /flushdns from a Command Prompt window.")}}</li>
+    <li>{{_("Clear your browser's cache. A cached but corrupt copy of the web page you're trying to access could be the root of the problem that's displaying the 400 error. Clearing your cache is unlikely the fix for the majority of 400 bad request issues, but it's quick and easy and worth trying.")}}</li>
+    <li>{{_("If the 400 error is happening on nearly every website you visit, the problem most likely lies with your computer or internet connection. Run an internet speed test and check it with your ISP to make sure everything is configured correctly.")}}</li>
+    <li>{{_("Contact the website directly that hosts the page. It's possible that the 400 Bad Request error actually isn't anything wrong on your end but is instead something they need to fix, in which case letting them know about it would be very helpful.")}}</li>
+    <li>{{_("If nothing above has worked, and you're sure the problem isn't with your computer, you're left with just checking back later.")}}</li>
+  </ul>
+{% endblock %}
+{%block footer%}
+{%endblock%}

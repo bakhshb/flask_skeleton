@@ -1,0 +1,88 @@
+<nav class="navbar navbar-expand-lg navbar-dark stylish-color">
+  <a class="navbar-brand" href="#">Top navbar</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarCollapse">
+    {# start of nav bar #}
+    {%if CURRENT_LANGUAGE == 'ar'%}
+    <ul class="navbar-nav navbar-right">
+      {%else%}
+      <ul class="navbar-nav mr-auto ">
+        {%endif%}
+
+        <li class="nav-item {{active_link}}">
+          <a class="nav-link" href="{{url_for ('home_blueprint.index')}}">{{_('Home')}} <span class="sr-only">(current)</span></a>
+        </li>
+        {% if current_user.is_authenticated %}
+        <li class="nav-item {{active_task}}">
+          <a class="nav-link" href="{{url_for('task_blueprint.list_task')}}"> {{_('Tasks')}}</a>
+        </li>
+        {% endif %}
+        {# end of is_authenticated #}
+
+        <li class="nav-item {{active_about}}">
+          <a class="nav-link" href="/page/about">{{_('About us')}}</a>
+        </li>
+      </ul>
+      {# Start Languages part #}
+      {%if CURRENT_LANGUAGE == 'ar'%}
+      <ul class="navbar-nav mr-auto">
+        {%else%}
+        <ul class="navbar-nav">
+          {%endif%}
+          {% if not current_user.is_authenticated %}
+          <li class="nav-item {{active_register}}">
+            <a class="nav-link" href="{{url_for ('user_blueprint.register')}}"><i class="fas fa-user-plus"></i> {{_('Register')}}</a>
+          </li>
+          <li class="nav-item {{active_login}}">
+            <a class="nav-link" href="{{url_for ('security.login')}}"><i class="fas fa-sign-in-alt"></i> {{_('Login')}}</a>
+          </li>
+          {% else %}
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('message_blueprint.messages') }}">
+              {% set new_messages = current_user.new_messages() %}
+
+              <i class="far fa-envelope"></i> {{_('Message')}}
+              <span id="message_count" class="badge badge-danger" style="visibility: {%if new_messages %} visible {% else %}hidden {% endif %};">
+                {{ new_messages }}
+              </span>
+            </a>
+          </li>
+          {% if current_user.has_role('Admin') %}
+          <li class="nav-item">
+            <a class="nav-link" href="{{url_for('admin.index')}}"><i class="fas fa-tachometer-alt"></i> {{_('Dashboard')}}</a>
+          </li>
+          {% endif %}
+          {# End Of Role Check #}
+          <li class="nav-item dropdown {{active_profile}}">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="fas fa-user"></i> {{_('Account')}}
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="nav-link disabled" href="#">{{ current_user.firstname}}</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="{{url_for ('profile_blueprint.view_profile')}}"><i class="fas fa-user-circle"></i> {{_('Profile')}}</a>
+              <a class="dropdown-item" href="{{url_for_security('change_password')}}"><i class="fas fa-key"></i> {{_('Change Password')}}</a>
+              <a class="dropdown-item" href="{{url_for ('security.logout')}}"><i class="fas fa-sign-out-alt"></i> {{_('Logout')}}</a>
+            </div>
+          </li>
+          {% endif %}
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="fas fa-globe"></i> {{_('Language')}}
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              {% for lang in AVAILABLE_LANGUAGES%}
+              {%if CURRENT_LANGUAGE == lang%}
+              <a class="dropdown-item">{{lang}}</a>
+              {%else%}
+              <a class="dropdown-item" href="{{ url_for('home_blueprint.set_language', language=lang) }}">{{ lang }}</a>
+              {%endif%}
+              {%endfor%}
+            </div>
+          </li>
+        </ul>
+
+      </div>
+    </nav>

@@ -1,0 +1,427 @@
+# Arabic translations for PROJECT.
+# Copyright (C) 2018 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2018.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2018-06-22 01:24+0300\n"
+"PO-Revision-Date: 2018-06-22 01:29+0300\n"
+"Last-Translator: \n"
+"Language: ar\n"
+"Language-Team: ar <LL@li.org>\n"
+"Plural-Forms: nplurals=6; plural=(n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
+"&& n%100<=10 ? 3 : n%100>=0 && n%100<=2 ? 4 : 5);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.5.3\n"
+"X-Generator: Poedit 2.0.7\n"
+
+#: blueprint/util.py:88
+msgid "year"
+msgstr "سنة"
+
+#: blueprint/util.py:88
+msgid "years"
+msgstr "سنة"
+
+#: blueprint/util.py:89
+msgid "month"
+msgstr "شهر"
+
+#: blueprint/util.py:89
+msgid "months"
+msgstr "شهر"
+
+#: blueprint/util.py:90
+msgid "week"
+msgstr "أسبوع"
+
+#: blueprint/util.py:90
+msgid "weeks"
+msgstr "أسبوع"
+
+#: blueprint/util.py:91
+msgid "day"
+msgstr "يوم"
+
+#: blueprint/util.py:91
+msgid "days"
+msgstr "يوم"
+
+#: blueprint/util.py:92
+msgid "hour"
+msgstr "ساعة"
+
+#: blueprint/util.py:92
+msgid "hours"
+msgstr "ساعة"
+
+#: blueprint/util.py:93
+msgid "minute"
+msgstr "دقيقة"
+
+#: blueprint/util.py:93
+msgid "minutes"
+msgstr "دقيقة"
+
+#: blueprint/util.py:94
+msgid "second"
+msgstr "ثانية"
+
+#: blueprint/util.py:94
+msgid "seconds"
+msgstr "ثانية"
+
+#: blueprint/util.py:100
+#, python-format
+msgid "%(num)d %(day)s ago"
+msgstr "منذ %(num)d %(day)s"
+
+#: blueprint/forms/message.py:6
+msgid "Recipient"
+msgstr "المستلم"
+
+#: blueprint/forms/message.py:7
+msgid "Subject"
+msgstr "الموضوع"
+
+#: blueprint/forms/message.py:8 blueprint/forms/message.py:12
+#: blueprint/templates/includes/_navbar.html:46
+msgid "Message"
+msgstr "رسالة"
+
+#: blueprint/forms/message.py:9 blueprint/forms/message.py:13
+#: blueprint/templates/message/send_message.html:45
+#: blueprint/templates/security/change_password.html:57
+#: blueprint/templates/security/forgot_password.html:31
+msgid "Submit"
+msgstr "ارسال"
+
+#: blueprint/forms/profile.py:6 blueprint/forms/user.py:7
+#: blueprint/templates/task/index.html:56
+msgid "First Name"
+msgstr "الاسم الاول"
+
+#: blueprint/forms/profile.py:7 blueprint/forms/user.py:8
+#: blueprint/templates/task/index.html:57
+msgid "Last Name"
+msgstr "اسم العائلة"
+
+#: blueprint/forms/profile.py:8 blueprint/forms/user.py:9
+msgid "Email Address"
+msgstr "عنوان البريد الإلكتروني"
+
+#: blueprint/forms/task.py:7 blueprint/forms/task.py:23
+#: blueprint/forms/task.py:26 blueprint/forms/task.py:29
+#: blueprint/templates/task/add.html:25
+msgid "Name"
+msgstr "الاسم"
+
+#: blueprint/forms/task.py:8 blueprint/templates/task/index.html:58
+msgid "Task Type"
+msgstr "نوع المهمة"
+
+#: blueprint/forms/task.py:9 blueprint/templates/task/add.html:208
+#: blueprint/templates/task/index.html:59
+msgid "Organization"
+msgstr "منظمة"
+
+#: blueprint/forms/task.py:10 blueprint/templates/task/index.html:60
+msgid "Place"
+msgstr "الجهة"
+
+#: blueprint/forms/task.py:11 blueprint/templates/task/index.html:61
+msgid "Task From"
+msgstr "المهمة من"
+
+#: blueprint/forms/task.py:12 blueprint/templates/task/index.html:62
+msgid "Task To"
+msgstr "المهمة إلى"
+
+#: blueprint/forms/task.py:13 blueprint/templates/task/add.html:157
+#: blueprint/templates/task/add.html:159 blueprint/templates/task/index.html:63
+msgid "Result"
+msgstr "النتيجة"
+
+#: blueprint/forms/task.py:17 blueprint/templates/task/index.html:30
+msgid "Search"
+msgstr "بحث"
+
+#: blueprint/forms/task.py:18 blueprint/templates/task/index.html:34
+msgid "From"
+msgstr "من"
+
+#: blueprint/forms/task.py:19 blueprint/templates/task/index.html:38
+msgid "To"
+msgstr "إلى"
+
+#: blueprint/forms/user.py:10
+msgid "New Password"
+msgstr "كلمة المرور الجديدة"
+
+#: blueprint/forms/user.py:13
+msgid "Passwords must match"
+msgstr "كلمة المرور يجب ان تتطابق"
+
+#: blueprint/forms/user.py:15
+msgid "Repeat Password"
+msgstr "اعد كلمة المرور"
+
+#: blueprint/templates/403.html:4 blueprint/templates/403.html:10
+msgid "Permission Required"
+msgstr "لا يوجد لديك الصلاحية للوصل الى هذه الصفحة"
+
+#: blueprint/templates/403.html:11 blueprint/templates/404.html:10
+msgid "What you were looking for is just not there."
+msgstr "لم يتم العثور على ما كنت تبحث عنه"
+
+#: blueprint/templates/403.html:12 blueprint/templates/404.html:11
+msgid "go to the main page"
+msgstr "اذهب الى الصفحة الرئيسية"
+
+#: blueprint/templates/404.html:3 blueprint/templates/404.html:9
+msgid "Page Not Found"
+msgstr "الصفحة غير موجودة"
+
+#: blueprint/templates/500.html:3
+msgid "Problem with server"
+msgstr "مشكلة في السيرفر"
+
+#: blueprint/templates/500.html:9
+msgid "Server Error"
+msgstr "خطأ في السيرفر"
+
+#: blueprint/templates/500.html:10
+msgid "Please contact the admin to fix this issue."
+msgstr "الرجاء التواصل مع مسؤول الموقع."
+
+#: blueprint/templates/includes/_footer.html:6
+msgid "Social Media Channels"
+msgstr "قنوات التواصل الاجتماعي"
+
+#: blueprint/templates/includes/_footer.html:9
+msgid "Register for free"
+msgstr "سجل مجانا في الموقع"
+
+#: blueprint/templates/includes/_footer.html:12
+msgid "Register Now"
+msgstr "التسجيل الآن"
+
+#: blueprint/templates/includes/_navbar.html:15
+msgid "Home"
+msgstr "الرئيسية"
+
+#: blueprint/templates/includes/_navbar.html:19
+msgid "Tasks"
+msgstr "المهام"
+
+#: blueprint/templates/includes/_navbar.html:25
+msgid "About us"
+msgstr "نبذة عنا"
+
+#: blueprint/templates/includes/_navbar.html:36
+#: blueprint/templates/security/register_user.html:4
+#: blueprint/templates/security/register_user.html:13
+#: blueprint/templates/security/register_user.html:86
+msgid "Register"
+msgstr "تسجيل"
+
+#: blueprint/templates/includes/_navbar.html:39
+#: blueprint/templates/security/login_user.html:4
+#: blueprint/templates/security/login_user.html:46
+#: blueprint/templates/security/register_user.html:87
+msgid "Login"
+msgstr "تسجيل الدخول"
+
+#: blueprint/templates/includes/_navbar.html:54
+msgid "Dashboard"
+msgstr "لوحة التحكم"
+
+#: blueprint/templates/includes/_navbar.html:60
+msgid "Account"
+msgstr "حساب"
+
+#: blueprint/templates/includes/_navbar.html:65
+#: blueprint/templates/profile/view.html:4
+#: blueprint/templates/profile/view.html:10
+msgid "Profile"
+msgstr "بروفايل"
+
+#: blueprint/templates/includes/_navbar.html:66
+#: blueprint/templates/security/change_password.html:3
+#: blueprint/templates/security/change_password.html:11
+msgid "Change Password"
+msgstr "تغيير كلمة المرور"
+
+#: blueprint/templates/includes/_navbar.html:67
+msgid "Logout"
+msgstr "تسجيل الخروج"
+
+#: blueprint/templates/includes/_navbar.html:73
+msgid "Language"
+msgstr "اللغة"
+
+#: blueprint/templates/message/index.html:4
+msgid "Messages"
+msgstr "البريد"
+
+#: blueprint/templates/message/index.html:6
+msgid "Compose"
+msgstr "إنشاء  بريد"
+
+#: blueprint/templates/message/index.html:11
+msgid "Messge Subject"
+msgstr "موضوع رسالة"
+
+#: blueprint/templates/message/index.html:12
+msgid "Date Sent"
+msgstr "تاريخ إرسالها"
+
+#: blueprint/templates/message/index.html:13
+msgid "Sender"
+msgstr "المرسل"
+
+#: blueprint/templates/message/index.html:42
+msgid "Previous"
+msgstr "السابق"
+
+#: blueprint/templates/message/index.html:43
+msgid "Next"
+msgstr "التالى"
+
+#: blueprint/templates/message/send_message.html:7
+#: blueprint/views/message.py:44
+msgid "Send Message"
+msgstr "ارسل الرسالة"
+
+#: blueprint/templates/message/view.html:7
+msgid "View Messages"
+msgstr "الرسائل"
+
+#: blueprint/templates/message/view.html:44
+msgid "Send"
+msgstr "ارسل"
+
+#: blueprint/templates/profile/edit.html:4
+#: blueprint/templates/profile/edit.html:10
+msgid "Edit Profile"
+msgstr "تعديل بروفايل"
+
+#: blueprint/templates/profile/edit.html:58
+msgid "Update"
+msgstr "تحديث"
+
+#: blueprint/templates/profile/view.html:59
+msgid "Edit"
+msgstr "تعديل"
+
+#: blueprint/templates/security/forgot_password.html:3
+msgid "Forget Password"
+msgstr "نسيت كلمة المرور"
+
+#: blueprint/templates/security/forgot_password.html:12
+msgid "Send password reset instructions"
+msgstr "إرسال إرشادات إعادة التعيين"
+
+#: blueprint/templates/security/login_user.html:12
+msgid "Please Login"
+msgstr "يرجى تسجيل الدخول"
+
+#: blueprint/templates/security/login_user.html:41
+msgid "Forgot"
+msgstr "نسيت"
+
+#: blueprint/templates/security/login_user.html:41
+msgid "Password?"
+msgstr "كلمة المرور؟"
+
+#: blueprint/templates/security/login_user.html:51
+msgid "Create Account"
+msgstr "إنشاء حساب"
+
+#: blueprint/templates/security/reset_password.html:3
+#: blueprint/templates/security/reset_password.html:10
+msgid "Reset password"
+msgstr "إعادة تعيين كلمة مرور"
+
+#: blueprint/templates/security/reset_password.html:41
+msgid "Reset"
+msgstr "استعادة"
+
+#: blueprint/templates/task/add.html:4 blueprint/templates/task/add.html:18
+msgid "Add Task"
+msgstr "إضافة مهمَّة"
+
+#: blueprint/templates/task/add.html:10 blueprint/templates/task/index.html:10
+msgid "List"
+msgstr "قائمة"
+
+#: blueprint/templates/task/add.html:11 blueprint/templates/task/index.html:11
+msgid "Create"
+msgstr "إنشاء"
+
+#: blueprint/templates/task/add.html:38 blueprint/templates/task/add.html:45
+#: blueprint/templates/task/add.html:71 blueprint/templates/task/add.html:78
+#: blueprint/templates/task/add.html:103 blueprint/templates/task/add.html:110
+msgid "Please Select"
+msgstr "الرجاء الاختيار"
+
+#: blueprint/templates/task/add.html:51 blueprint/templates/task/add.html:85
+#: blueprint/templates/task/add.html:116
+msgid "to add new choice click on +"
+msgstr "إضافة مهمة جديدة"
+
+#: blueprint/templates/task/add.html:166 blueprint/templates/task/add.html:188
+#: blueprint/templates/task/add.html:215 blueprint/templates/task/add.html:242
+msgid "Add"
+msgstr "اضافة"
+
+#: blueprint/templates/task/index.html:4 blueprint/templates/task/index.html:19
+msgid "Task List"
+msgstr "قائمة المهام"
+
+#: blueprint/templates/task/index.html:42
+msgid "Print"
+msgstr "طباعة"
+
+#: blueprint/templates/task/index.html:64
+msgid "created at"
+msgstr "تم انشائه"
+
+#: blueprint/templates/task/index.html:94
+msgid "There is no records"
+msgstr "لا يوجد أي سجل"
+
+#: blueprint/views/message.py:42 blueprint/views/message.py:72
+#: blueprint/views/message.py:89
+msgid "Your message has been sent."
+msgstr "لقد تم ارسال الرسالة."
+
+#: blueprint/views/message.py:92
+msgid "Feilds can not be empty"
+msgstr "لا يمكن ان تكون فارغ"
+
+#: blueprint/views/profile.py:31
+msgid "Your details has been updated"
+msgstr "تم تحديث البيانات"
+
+#: blueprint/views/profile.py:33 blueprint/views/user.py:27
+msgid "The email is already exist in our system"
+msgstr "البريد الإلكتروني موجود بالفعل"
+
+#: blueprint/views/user.py:25
+msgid "Thanks for registering"
+msgstr "شكرا للتسجيل"
+
+#~ msgid "Send Message to %(recipient)s"
+#~ msgstr "ارسل رسالة الى %(recipient)s"
+
+#~ msgid "%d %s ago"
+#~ msgstr "منذ %s %d"
+
+#~ msgid "go somewhere nice"
+#~ msgstr "الذهاب إلى مكان لطيف"

@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block style %}
+<link rel="stylesheet" href="{{url_for('static', filename='chat.css')}}">
+{% endblock %}
+{% block body %}
+<h3 class="form-layout-heading">{{ _('View Messages') }}</h3>
+<hr class="colorgraph"><br>
+
+<div class="card grey lighten-3 chat-room">
+    <div class="card-body">
+
+        <!-- Grid row -->
+        <div class="row px-lg-2 px-2">
+{# <div class="col-md-6 col-xl-3 pl-md-3 px-lg-auto px-0">
+</div>
+            <!-- Grid column --> #}
+            <div class="col-md-6 col-xl-12 pl-md-3 px-lg-auto px-0">
+
+                <div class="chat-message">
+
+                    <ul class="list-unstyled chat">
+                      {% for msg in messages %}
+                        <li class="d-flex justify-content-between mb-4">
+                            <img src="http://placehold.it/50/55C1E7/fff&text=U" alt="avatar" class="avatar rounded-circle mr-2 ml-lg-3 ml-0 z-depth-1">
+                            <div class="chat-body white p-3 ml-2 z-depth-1">
+                                <div class="header">
+                                    <strong class="primary-font">{{msg.sender.firstname + ' ' + msg.sender.lastname}}</strong>
+                                    <small class="pull-right text-muted"><i class="fa fa-clock-o"></i> {{msg.timestamp|timesince}}</small>
+                                </div>
+                                <hr class="w-100">
+                                <p class="mb-0">
+                                  {{msg.body|safe}}
+                                </p>
+                            </div>
+                        </li>
+                        {% endfor %}
+                        <li class="white">
+                          <form class="" action="{{url_for('message_blueprint.view_message', msg_id=msg_id ,parent_id=parent_id)}}" method="POST">
+                            {{ reply_message_form.hidden_tag() }}
+                            <div class="form-group basic-textarea">
+                            {{reply_message_form.message(class="form-control pl-2 my-0",placeholder="Type your message here...")}}
+                            </div>
+                            <button class="btn btn-info btn-rounded btn-sm waves-effect waves-light float-right" id="btn-chat">{{_('Send')}}</button>
+                          </form>
+                        </li>
+                    </ul>
+
+                </div>
+
+            </div>
+            <!-- Grid column -->
+
+        </div>
+        <!-- Grid row -->
+
+    </div>
+</div>
+
+{% endblock %}

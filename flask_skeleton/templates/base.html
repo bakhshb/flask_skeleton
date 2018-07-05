@@ -1,0 +1,73 @@
+<!Doctype html>
+{%if CURRENT_LANGUAGE == 'ar'%}
+<html lang="ar" dir="rtl">
+{%else%}
+<html lang="en">
+{%endif%}
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <!-- <link rel="icon" href="../../../../favicon.ico"> -->
+
+  <title>{%block title%} {%endblock%}</title>
+
+  <!-- Include Editor style. -->
+  {%block style%}
+  <!-- min css  -->
+  {% assets "css_all" %}
+  <link href="{{ ASSET_URL }}" rel="stylesheet">
+  {% endassets %}
+
+  {%if CURRENT_LANGUAGE == 'ar'%}
+  <link rel="stylesheet" href="//cdn.rawgit.com/morteza/bootstrap-rtl/v3.3.4/dist/css/bootstrap-rtl.min.css">
+  {%endif%}
+  <!-- FONTAWSOME -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+
+  {%endblock%}
+
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-120515428-1"></script>
+  <script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-120515428-1');
+</script>
+
+
+</head>
+
+<body>
+  <!-- Navbar-->
+  {%block nav%}
+  {% include 'includes/_navbar.html' %}
+  {%endblock%}
+
+
+  {% include 'includes/_msgs.html'%}
+
+  <main role="main" class="container" {% if CURRENT_LANGUAGE == 'ar'%} align="right" {%endif%}>
+    {% block body %}
+
+    {% endblock %}
+  </main><!-- /.container -->
+  <!-- FOOTER -->
+  {%block footer%}
+  {% include 'includes/_footer.html' %}
+  {% endblock %}
+
+  <!-- min js  -->
+  {% assets "js_all" %}
+  <script type="text/javascript" src="{{ ASSET_URL }}"></script>
+  {% endassets %}
+
+  {%block javascript%}
+  {%endblock%}
+</body>
+</html>

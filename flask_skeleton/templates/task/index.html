@@ -1,0 +1,122 @@
+{% extends "base.html" %}
+{% set active_task= 'active'%}
+{%block title%}
+{{_('Task List')}}
+{%endblock%}
+{% block body %}
+<br>
+<nav>
+  <div class="nav nav-tabs" id="nav-tab" role="tablist">
+    <a class="nav-item nav-link active"  href="{{url_for('task_blueprint.list_task')}}" role="tab">{{_('List')}}</a>
+    <a class="nav-item nav-link" href="{{url_for('task_blueprint.add_task')}}" role="tab">{{_('Create')}}</a>
+  </div>
+</nav>
+<div class="tab-content" id="nav-tabContent">
+<br>
+
+
+
+  <h3 class="form-layout-heading">{{_('Task List')}}</h3>
+  <hr class="colorgraph"><br>
+
+  <div class="row">
+    <div class="col-md-1">
+
+    </div>
+    <div class="col-md-10">
+      <form method="GET" action="{{url_for('task_blueprint.search_task')}}">
+        <div class="form-group">
+          {{search_form.search.label(class="filter-col")}}
+          {{ search_form.search(placeholder=_("Search"), class="form-control") }}
+        </div>
+        <div class="form-group">
+          {{search_form.created_from.label(class="filter-col")}}
+          {{ search_form.created_from(placeholder=_("From"), class="form-control " , type="date") }}
+        </div>
+        <div class="form-group">
+          {{search_form.created_to.label(class="filter-col")}}
+          {{ search_form.created_to(placeholder=_("To"), class="form-control" , Type="date") }}
+        </div>
+        <div class="form-group ">
+          <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
+          <button type="button" name="button" id="btnPrint"  class="btn btn-warning">{{_('Print')}}</button>
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+
+
+  <div id="dvContainer">
+  <table class="table table-responsive-lg">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">{{_('First Name')}}</th>
+        <th scope="col">{{_('Last Name')}}</th>
+        <th scope="col">{{_('Task Type')}}</th>
+        <th scope="col">{{_('Organization')}}</th>
+        <th scope="col">{{_('Place')}}</th>
+        <th scope="col">{{_('Task From')}}</th>
+        <th scope="col">{{_('Task To')}}</th>
+        <th scope="col">{{_('Result')}}</th>
+        <th scope="col">{{_('created at')}}</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% if tasks|length > 0 %}
+      {% for task in tasks  %}
+      <tr>
+        <th scope="row">{{task.id}}</th>
+        <td>{{task.user.firstname}}</td>
+        <td>{{task.user.lastname}}</td>
+        <td>{{task.task_type.name}}</td>
+        <td>{{task.organization.name}}</td>
+        <td>{{task.place.name}}</td>
+        <td>{{task.task_from.strftime('%Y-%m-%d')}}</td>
+        <td>{{task.task_to.strftime('%Y-%m-%d')}}</td>
+        <td>{{task.result}}</td>
+        <td>{{task.created_at.strftime('%Y-%m-%d')}}</td>
+        <td><a href="" ><i class="fas fa-pencil-alt"></i></a></td>
+        {# <td><a href="/delete/user/{{user.id}}" class="btn btn-danger" role="button">Delete</a></td> #}
+      </tr>
+
+      {% endfor %}
+      {% else %}
+      <tr>
+        <th scope="row"></th>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>{{_('There is no records')}}</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        {# <td><a href="/delete/user/{{user.id}}" class="btn btn-danger" role="button">Delete</a></td> #}
+      </tr>
+      {% endif %}
+    </tbody>
+  </table>
+
+  </div>
+{#  #}
+</div>
+
+
+
+
+{# <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script> #}
+
+
+{% endblock %}
+
+{% block javascript%}
+{{ super() }}
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script src="{{ url_for ('static', filename='pdf_generating.js') }}"></script>
+{%endblock%}

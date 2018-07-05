@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block body %}
+  <div class="wrapper">
+
+      <form action="{{ url_for('message_blueprint.send_message') }}" method="POST" class="form-layout" style="max-width:900px;">
+        <h3 class="form-layout-heading">{{ _('Send Message') }}</h3>
+        <hr class="colorgraph"><br>
+        {{ send_message_form.hidden_tag() }}
+        <div class="md-form">
+          {% if send_message_form.recipient.errors %}
+          {{ send_message_form.recipient(class="form-control is-invalid") }}
+          {% else %}
+          {{ send_message_form.recipient(class="form-control", style="padding:0px;") }}
+          {% endif %}
+          <div class="invalid-feedback">
+            {{ send_message_form.recipient.errors[0] }}
+          </div>
+        </div>
+        <div class="md-form">
+          <i class="fa fa-envelope prefix grey-text"></i>
+          {% if send_message_form.subject.errors %}
+          {{ send_message_form.subject(class="form-control is-invalid") }}
+          {% else %}
+          {{ send_message_form.subject(class="form-control") }}
+          {% endif %}
+          <div class="invalid-feedback">
+            {{ send_message_form.subject.errors[0] }}
+          </div>
+          {{send_message_form.subject.label()}}
+        </div>
+
+        <div class="md-form">
+          {% if send_message_form.message.errors %}
+          {{ send_message_form.message(class="textarea") }}
+          {% else %}
+          {{ send_message_form.message(class="textarea") }}
+          {% endif %}
+          <div class="invalid-feedback">
+            {{ send_message_form.message.errors[0] }}
+          </div>
+        </div>
+
+        <div class="text-center mt-4">
+          <button class="btn btn-primary" type="submit">{{_('Submit')}}<i class="fa fa-paper-plane-o ml-2"></i></button>
+        </div>
+
+      </form>
+    </div>
+
+{% endblock %}

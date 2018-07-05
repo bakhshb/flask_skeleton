@@ -1,0 +1,258 @@
+{% extends 'base.html' %}
+{% set active_task = 'active'%}
+{%block title%}
+{{_('Add Task')}}
+{%endblock%}
+{% block body %}
+<br>
+<nav>
+  <div class="nav nav-tabs" id="nav-tab" role="tablist">
+    <a class="nav-item nav-link "  href="{{url_for('task_blueprint.list_task')}}" role="tab">{{_('List')}}</a>
+    <a class="nav-item nav-link active" href="{{url_for('task_blueprint.add_task')}}" role="tab">{{_('Create')}}</a>
+  </div>
+</nav>
+<div class="tab-content" id="nav-tabContent">
+
+  <div class="wrapper">
+    <form method="POST" action="{{url_for('task_blueprint.add_task')}}" class="form-layout" novalidate>
+      <h3 class="form-layout-heading">{{_('Add Task')}}</h3>
+      <hr class="colorgraph"><br>
+      {{ task_form.hidden_tag() }}
+
+      <div class="form-row ">
+        {{task_form.name.label(class="col-sm-3 col-form-label")}}
+        <div class="form-group col-md-6">
+          {{ task_form.name(placeholder=_("Name"), class="form-control", disabled=True, value=current_user.firstname +" "+ current_user.lastname) }}
+          <div class="invalid-feedback">
+            {{ task_form.name.errors[0] }}
+          </div>
+        </div>
+      </div>
+
+      <div class="form-row ">
+
+        {{task_form.task_type.label(class="col-sm-3 col-form-label")}}
+        <div class="form-group col-md-6">
+          {% if task_form.task_type.errors %}
+          <select name="{{ task_form.task_type.name }}" class="form-control is-invalid" style="padding:0px;">
+            <option value="" default=''>{{_('Please Select')}}</option>
+            {% for option in task_form.task_type %}
+            {{ option }}
+            {% endfor %}
+          </select>
+          {% else %}
+          <select name="{{ task_form.task_type.name }}" class="form-control" style="padding:0px;">
+            <option value="" default=''>{{_('Please Select')}}</option>
+            {% for option in task_form.task_type %}
+            {{ option }}
+            {% endfor %}
+          </select>
+          {% endif %}
+          <small class="form-text text-muted">{{_('to add new choice click on +')}}</small>
+          <div class="invalid-feedback">
+            {{ task_form.task_type.errors[0] }}
+          </div>
+        </div>
+        <div class="form-group col-md-2">
+          <!-- Trigger the modal with a button -->
+          <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#taskType"><i class="fas fa-plus fa-lg"></i></button>
+
+        </div>
+
+      </div>
+      {# END OF TASK TYPE #}
+
+      <div class="form-row ">
+
+        {{task_form.organization.label(class="col-sm-3 col-form-label")}}
+        <div class="form-group col-md-6">
+          {% if task_form.organization.errors %}
+          <select name="{{ task_form.organization.name }}" class="form-control is-invalid" style="padding:0px;">
+            <option value="" default=''>{{_('Please Select')}}</option>
+            {% for option in task_form.organization %}
+            {{ option }}
+            {% endfor %}
+          </select>
+          {% else %}
+          <select name="{{ task_form.organization.name }}" class="form-control" style="padding:0px;">
+            <option value="" default=''>{{_('Please Select')}}</option>
+            {% for option in task_form.organization %}
+
+            {{ option }}
+            {% endfor %}
+          </select>
+          {% endif %}
+          <small class="form-text text-muted">{{_('to add new choice click on +')}}</small>
+          <div class="invalid-feedback">
+            {{ task_form.organization.errors[0] }}
+          </div>
+        </div>
+        <div class="form-group col-md-2">
+          <!-- Trigger the modal with a button -->
+          <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#organization"><i class="fas fa-plus fa-lg"></i></button>
+        </div>
+      </div>
+      {# END OF Organization #}
+
+
+      <div class="form-row ">
+        {{task_form.place.label(class="col-sm-3 col-form-label")}}
+        <div class="form-group col-md-6">
+          {% if task_form.place.errors %}
+          <select name="{{ task_form.place.name }}" class="form-control is-invalid" style="padding:0px;">
+            <option value="" default=''>{{_('Please Select')}}</option>
+            {% for option in task_form.place %}
+            {{ option }}
+            {% endfor %}
+          </select>
+          {% else %}
+          <select name="{{ task_form.place.name }}" class="form-control" style="padding:0px;">
+            <option value="" default=''>{{_('Please Select')}}</option>
+            {% for option in task_form.place %}
+            {{ option }}
+            {% endfor %}
+          </select>
+          {% endif %}
+          <small class="form-text text-muted">{{_('to add new choice click on +')}}</small>
+          <div class="invalid-feedback">
+            {{ task_form.place.errors[0] }}
+          </div>
+        </div>
+        <div class="form-group col-md-2">
+          <!-- Trigger the modal with a button -->
+          <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#place"><i class="fas fa-plus fa-lg"></i></button>
+        </div>
+
+      </div>
+      {# END OF PLACE #}
+
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          {{task_form.task_from.label}}
+          {% if task_form.task_from.errors %}
+          {{ task_form.task_from(type="date", class="form-control is-invalid") }}
+          {% else %}
+          {{ task_form.task_from(type="date", class="form-control ") }}
+          {% endif %}
+          <div class="invalid-feedback">
+            {{ task_form.task_from.errors[0] }}
+          </div>
+        </div>
+        <div class="form-group col-md-6">
+          {{task_form.task_to.label}}
+          {% if task_form.task_to.errors %}
+          {{ task_form.task_to(type="date", class="form-control is-invalid") }}
+          {% else %}
+          {{ task_form.task_to(type="date", class="form-control") }}
+          {% endif %}
+          <div class="invalid-feedback">
+            {{ task_form.task_to.errors[0] }}
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        {{task_form.result.label}}
+        {% if task_form.result.errors %}
+        {{ task_form.result(placeholder=_("Result"), class="textarea") }}
+        {% else %}
+        {{ task_form.result(placeholder=_("Result"), class="textarea") }}
+        {% endif %}
+        <div class="invalid-feedback">
+          {{ task_form.result.errors[0] }}
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-primary">{{_('Add')}}</button>
+
+    </form>
+  </div>
+
+
+
+  <!-- Modal TASK TYPE -->
+  <div class="modal fade" id="taskType" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Task Type</h4>
+        </div>
+        <div class="modal-body">
+          <form class="" action="{{url_for ('task_blueprint.add_task_type')}}" method="POST" novalidate>
+            {{ task_type_form.csrf_token }}
+            {{task_type_form.name.label}}
+            {{task_type_form.name()}}
+            <button type="submit" class="btn btn-primary">{{_('Add')}}</button>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  {# END  #}
+
+  <!-- Modal Organization-->
+  <div class="modal fade" id="organization" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">{{_('Organization')}}</h4>
+        </div>
+        <div class="modal-body">
+          <form class="" action="{{url_for ('task_blueprint.add_organization')}}" method="POST" novalidate>
+            {{ organization_form.csrf_token }}
+            {{organization_form.name.label}}
+            {{organization_form.name()}}
+            <button type="submit" class="btn btn-primary">{{_('Add')}}</button>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  {# END #}
+
+  <!-- Modal Place-->
+  <div class="modal fade" id="place" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Place</h4>
+        </div>
+        <div class="modal-body">
+          <form class="" action="{{url_for ('task_blueprint.add_place')}}" method="POST" novalidate>
+            {{ place_form.csrf_token }}
+            {{place_form.name.label}}
+            {{place_form.name()}}
+            <button type="submit" class="btn btn-primary">{{_('Add')}}</button>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  {# END #}
+
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,50 @@
+bundles-client-css:
+    output: cache/default.css
+    contents:
+      - bootstrap-4.1.1-dist/css/bootstrap.css
+      - MDB Free/css/mdb.css
+      - summernote-0.8.9-dist/dist/summernote-bs4.css
+      - style.css
+
+bundles-client-js:
+  output: cache/default.js
+  contents:
+    - jquery/jquery-3.3.1.min.js
+    - popper/popper.min.js
+    - bootstrap-4.1.1-dist/js/bootstrap.js
+    - MDB Free/js/mdb.js
+    - summernote-0.8.9-dist/dist/summernote-bs4.min.js
+    - client_app.js
+
+bundles-admin-css:
+  output: cache/admin.css
+  contents:
+    - Flask-Admin-Dashboard-master/css/bootstrap.min.css
+    - Flask-Admin-Dashboard-master/css/AdminLTE.min.css
+    - Flask-Admin-Dashboard-master/css/skins/_all-skins.min.css
+    - Flask-Admin-Dashboard-master/plugins/iCheck/flat/blue.css
+    - Flask-Admin-Dashboard-master/plugins/morris/morris.css
+    - Flask-Admin-Dashboard-master/plugins/jvectormap/jquery-jvectormap-1.2.2.css
+    - Flask-Admin-Dashboard-master/plugins/datepicker/datepicker3.css
+    - Flask-Admin-Dashboard-master/plugins/daterangepicker/daterangepicker.css
+    - Flask-Admin-Dashboard-master/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css
+    - summernote-0.8.9-dist/dist/summernote.css
+
+bundles-admin-js:
+  output: cache/admin.js
+  contents:
+    - raphael/raphael.min.js
+    - Flask-Admin-Dashboard-master/plugins/morris/morris.min.js
+    - Flask-Admin-Dashboard-master/plugins/sparkline/jquery.sparkline.min.js
+    - Flask-Admin-Dashboard-master/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js
+    - Flask-Admin-Dashboard-master/plugins/jvectormap/jquery-jvectormap-world-mill-en.js
+    - Flask-Admin-Dashboard-master/plugins/knob/jquery.knob.js
+    - moment/moment.js
+    - Flask-Admin-Dashboard-master/plugins/daterangepicker/daterangepicker.js
+    - Flask-Admin-Dashboard-master/plugins/datepicker/bootstrap-datepicker.js
+    - Flask-Admin-Dashboard-master/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js
+    - Flask-Admin-Dashboard-master/plugins/slimScroll/jquery.slimscroll.min.js
+    - Flask-Admin-Dashboard-master/plugins/fastclick/fastclick.js
+    - Flask-Admin-Dashboard-master/js/app.min.js
+    - Flask-Admin-Dashboard-master/js/demo.js
+    - summernote-0.8.9-dist/dist/summernote.js

@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% set active_login= 'active'%}
+{%block title%}
+{{_('Login')}}
+{%endblock%}
+{%block nav%}
+{%endblock%}
+{% block body %}
+<div class="wrapper">
+
+  <form method="POST" action="{{url_for('security.login')}}" class="form-layout">
+    <h3 class="form-layout-heading">{{_('Please Login')}}</h3>
+    <hr class="colorgraph"><br>
+    {{ login_user_form.hidden_tag() }}
+
+    <div class="md-form">
+      <i class="fa fa-envelope prefix grey-text"></i>
+      {% if login_user_form.email.errors %}
+      {{ login_user_form.email(class="form-control is-invalid") }}
+      {% else %}
+      {{ login_user_form.email(class="form-control") }}
+      {% endif %}
+      <div class="invalid-feedback">
+        {{ login_user_form.email.errors[0] }}
+      </div>
+      {{login_user_form.email.label()}}
+    </div>
+
+    <div class="md-form pb-3">
+      <i class="fa fa-key prefix grey-text"></i>
+      {% if login_user_form.password.errors %}
+      {{ login_user_form.password(class="form-control is-invalid") }}
+      {% else %}
+      {{ login_user_form.password(class="form-control") }}
+      {% endif %}
+      <div class="invalid-feedback">
+        {{ login_user_form.password.errors[0] }}
+      </div>
+      {{login_user_form.password.label()}}
+      {% if security.recoverable %}
+      <p class="font-small blue-text d-flex justify-content-end">{{_('Forgot')}} <a href="{{ url_for_security('forgot_password') }}" class="blue-text ml-1"> {{_('Password?')}}</a></p>
+      {% endif %}
+    </div>
+
+    <div class="text-center mt-4">
+      <button class="btn btn-primary" type="submit">{{_('Login')}}<i class="fa fa-paper-plane-o ml-2"></i></button>
+    </div>
+
+  </form>
+  <center>
+    <a href="{{url_for('user_blueprint.register')}}" class="font-weight-bold">{{_('Create Account')}}</a>
+  </center>
+</div>
+
+
+
+{% endblock %}
+{%block footer%}
+{%endblock%}

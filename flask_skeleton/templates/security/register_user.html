@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% set active_register= 'active'%}
+{%block title%}
+{{_('Register')}}
+{%endblock%}
+{%block nav%}
+{%endblock%}
+{% block body %}
+
+<div class="wrapper">
+
+  <form action="{{url_for('user_blueprint.register')}}" method="POST" class="form-layout" novalidate style="max-width:600px;">
+    <h3 class="form-layout-heading">{{_('Register')}}</h3>
+    <hr class="colorgraph"><br>
+    {{ register_user_form.hidden_tag() }}
+
+    <div class="form-row ">
+      <!-- Grid column -->
+      <div class="col">
+        <div class="md-form">
+          {% if register_user_form.firstname.errors %}
+          {{ register_user_form.firstname(class="form-control is-invalid") }}
+          {% else %}
+          {{ register_user_form.firstname(class="form-control") }}
+          {% endif %}
+          <div class="invalid-feedback">
+            {{ register_user_form.firstname.errors[0] }}
+          </div>
+          {{register_user_form.firstname.label()}}
+        </div>
+      </div>
+      <!-- Grid column -->
+      <div class="col">
+        <div class="md-form">
+
+          {% if register_user_form.lastname.errors %}
+          {{ register_user_form.lastname(class="form-control is-invalid") }}
+          {% else %}
+          {{ register_user_form.lastname(class="form-control") }}
+          {% endif %}
+          <div class="invalid-feedback">
+            {{ register_user_form.lastname.errors[0] }}
+          </div>
+          {{register_user_form.lastname.label()}}
+        </div>
+      </div>
+    </div>
+
+    <div class="md-form ">
+      {% if register_user_form.email.errors %}
+      {{ register_user_form.email(class="form-control is-invalid") }}
+      {% else %}
+      {{ register_user_form.email(class="form-control") }}
+      {% endif %}
+      <div class="invalid-feedback">
+        {{ register_user_form.email.errors[0] }}
+      </div>
+      {{register_user_form.email.label()}}
+    </div>
+
+    <div class="md-form">
+      {% if register_user_form.password.errors %}
+      {{ register_user_form.password(class="form-control is-invalid") }}
+      {% else %}
+      {{ register_user_form.password(class="form-control") }}
+      {% endif %}
+      <div class="invalid-feedback">
+        {{ register_user_form.password.errors[0] }}
+      </div>
+      {{register_user_form.password.label()}}
+    </div>
+
+    <div class="md-form">
+      {% if register_user_form.confirm.errors %}
+      {{ register_user_form.confirm(class="form-control is-invalid") }}
+      {% else %}
+      {{ register_user_form.confirm(class="form-control") }}
+      {% endif %}
+      <div class="invalid-feedback">
+        {{ register_user_form.confirm.errors[0] }}
+      </div>
+      {{register_user_form.confirm.label()}}
+    </div>
+
+    <div class="text-center mt-4">
+      <button class="btn btn-primary" type="submit">{{_('Register')}}<i class="fa fa-paper-plane-o ml-2"></i></button>
+      <a href="{{url_for('security.login')}}" class="btn btn-green">{{_('Login')}}</a>
+    </div>
+  </form>
+</div>
+
+{% endblock %}
+{%block footer%}
+{%endblock%}

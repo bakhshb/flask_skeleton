@@ -1,0 +1,6 @@
+graft public/static
+graft public/templates
+graft public/translations
+include public/*.yml
+include public/*.json
+global-exclude *.pyc

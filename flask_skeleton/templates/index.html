@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% set active_link = 'active'%}
+{%block title%}
+Home
+{%endblock%}
+{% block body%}
+
+<!-- Main jumbotron for a primary marketing message or call to action -->
+{% if current_user.has_role('Admin') %}
+<div class="jumbotron">
+  <div class="container">
+    <h1 class="display-3">Hello,</h1>
+    <p>You can override this page by going to the dashboard and create a new page with url <span class="font-italic font-weight-bold">home.</span>.</p>
+    <p><a class="btn btn-primary btn-lg" href="{{url_for('admin.index')}}" role="button">{{_('Dashboard')}} &raquo;</a></p>
+  </div>
+</div>
+{% else %}
+<div class="jumbotron">
+  <div class="container">
+    <h1 class="display-3">Hello, world!</h1>
+    <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
+    <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p>
+  </div>
+</div>
+{% endif %}
+{% endblock %}
