@@ -34,6 +34,8 @@ def create_app(ENV_SETTING):
 
     #database init
     db.init_app(app)
+    # with app.app_context():
+    #     create_user(app,db)
     #flask_admin
     admin = Admin(app, index_view=AdminIndexCustomView(url=None,endpoint=None) , name='Admin Panel', base_template='admin/my_master.html', template_mode='bootstrap3')
     # Mail

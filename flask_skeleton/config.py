@@ -44,7 +44,7 @@ class Config(object):
 
     ASSETS_FILEPATH = os.path.abspath(os.path.join(__file__,'../assets.yml'))
 
-    GOOGLE_KEY_FILEPATH = os.path.abspath(os.path.join(__file__, '../My Project 3892-dc8a694a5bb9.json'))
+    GOOGLE_KEY_FILEPATH = os.path.abspath(os.path.join(__file__, '../My Project 3892-61c93430b4e5.json'))
 
 class ProductionConfig(Config):
     SERVER_NAME='apptester.net'
@@ -64,8 +64,12 @@ class DevelopmentConfig(Config):
 
 class TestingConfig(Config):
     TESTING = True
+    SQLALCHEMY_DATABASE_URI = "sqlite:///:memory:"
+    SQLALCHEMY_TRACK_MODIFICATIONS = True    # Avoids SQLAlchemy warning
+    WTF_CSRF_ENABLED = False
 
 app_config = {
     'development': DevelopmentConfig,
-    'production': ProductionConfig
+    'production': ProductionConfig,
+    'test': TestingConfig
 }

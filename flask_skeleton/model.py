@@ -72,9 +72,6 @@ class Role(db.Model, RoleMixin):
     id = db.Column(db.Integer(), primary_key=True)
     name = db.Column(db.String(50), unique=True)
 
-    def __unicode__(self):
-        return self.name
-
     def __repr_(self):
         return '<Role %r>' % (self.name)
     def __str__(self):
@@ -95,7 +92,7 @@ class Task (Base,db.Model):
     result = db.Column(db.Text)
 
     def __repr__(self):
-     return '{0}(task={1})'.format(self.__class__.__name__, self.task_type)
+     return '{0}(id={1})'.format(self.__class__.__name__, self.id)
 
 # TaskTypes Model
 class TaskType(Base,db.Model):

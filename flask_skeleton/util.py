@@ -6,8 +6,6 @@ from threading import Thread
 from flask_babelex import _
 from oauth2client.service_account import ServiceAccountCredentials
 from .model import Message, Task
-import sys
-import os
 from datetime import datetime
 # Check if user already logged in
 def already_logged_in(f):
@@ -32,7 +30,7 @@ def email (subject, body, sender, recipients):
     Thread(target=send_async_email, args=(current_app._get_current_object(), msg)).start()
     current_app.logger.info('Email Sent')
 
-# Goole Token
+# Google Token
 # The scope for the OAuth2 request.
 SCOPE = 'https://www.googleapis.com/auth/analytics.readonly'
 # Defines a method to get an access token from the ServiceAccount object.
