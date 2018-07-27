@@ -2,8 +2,8 @@ from flask import Blueprint, render_template, flash, redirect, url_for, request
 from flask_login import current_user
 from flask_security import login_required
 from flask_babelex import _
+from .forms import EditProfileForm
 from ..model import db
-from ..forms.profile import EditProfileForm
 
 profile_blueprint = Blueprint('profile_blueprint', __name__)
 

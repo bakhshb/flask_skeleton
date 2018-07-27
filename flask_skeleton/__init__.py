@@ -10,8 +10,13 @@ from .util import mail,inject_current_language, inject_all_languages, inject_goo
                          inject_total_notification, inject_tasks, bad_request, page_not_found, page_forbidden, page_server_error
 from .model import  db, User, Role, Task, TaskType, Organization, Place, Page, Message
 csrf = CSRFProtect()
-from .views import home, message, page, profile, task, user
-from .views.admin import AdminIndexCustomView, UserCustomView,\
+from .home import home_blueprint
+from .page import page_blueprint
+from .profile import profile_blueprint
+from .user import user_blueprint
+from .message import message_blueprint
+from .task import task_blueprint
+from .admin import AdminIndexCustomView, UserCustomView,\
  RoleCustomView, TaskCustomView, TaskTypeCustomView, OrganizationCustomView,\
  PlaceCustomView, PageCustomView, ReturnToMainView
 from .momentjs import momentjs
@@ -98,12 +103,12 @@ def create_app(ENV_SETTING):
 
 # Blueprint
 def load_blueprints (app):
-    app.register_blueprint(home.home_blueprint)
-    app.register_blueprint(page.page_blueprint, url_prefix='/page')
-    app.register_blueprint(profile.profile_blueprint, url_prefix='/profile')
-    app.register_blueprint(user.user_blueprint, url_prefix='/user')
-    app.register_blueprint(task.task_blueprint, url_prefix='/task')
-    app.register_blueprint(message.message_blueprint, url_prefix='/message')
+    app.register_blueprint(home_blueprint)
+    app.register_blueprint(page_blueprint, url_prefix='/page')
+    app.register_blueprint(profile_blueprint, url_prefix='/profile')
+    app.register_blueprint(user_blueprint, url_prefix='/user')
+    app.register_blueprint(task_blueprint, url_prefix='/task')
+    app.register_blueprint(message_blueprint, url_prefix='/message')
 
 # Admin
 def load_admin_views(admin, db):

@@ -2,17 +2,11 @@ from flask import Blueprint, render_template, flash, redirect, url_for, request
 from flask_login import current_user
 from flask_security import login_required, roles_required
 from datetime import date, datetime
+from .forms import TaskForm, SearchForm, TaskTypeForm, OrganizationForm, PlaceForm
 from ..model import db, User, Task, TaskType, Organization, Place
-from ..forms.task import TaskForm, SearchForm, TaskTypeForm, OrganizationForm, PlaceForm
 
 
 task_blueprint = Blueprint('task_blueprint', __name__)
-
-@task_blueprint.route('/all', methods=['GET'])
-def list_task ():
-    form = SearchForm(request.form)
-    tasks = Task.query.all()
-    return render_template('task/index.html', tasks=tasks, search_form=form)
 
 #
 def populate_form_choices(task_form):
@@ -42,6 +36,11 @@ def populate_form_choices(task_form):
     task_form.place.choices = place_choices
 
 
+@task_blueprint.route('/', methods=['GET'])
+def get_task ():
+    form = SearchForm(request.form)
+    tasks = Task.query.all()
+    return render_template('task/index.html', tasks=tasks, search_form=form)
 
 
 @task_blueprint.route('/add', methods=['GET', 'POST'])
@@ -62,14 +61,14 @@ def add_task ():
         task = Task(user_id =user_id, task_type_id=task_type, organization_id=organization, place_id=place, task_from=task_from, task_to=task_to, result=result)
         db.session.add(task)
         db.session.commit()
-        return redirect(url_for('task_blueprint.list_task'))
+        return redirect(url_for('task_blueprint.get_task'))
     return render_template('task/add.html', task_form=form, task_type_form = task_type_form,\
                                                         organization_form = organization_form,\
                                                         place_form = place_form)
 
 
 # Add New Task Type
-@task_blueprint.route('/task/type/add', methods=['POST'])
+@task_blueprint.route('/tasktype', methods=['POST'])
 def add_task_type():
     form = TaskTypeForm(request.form)
     if form.validate_on_submit():
@@ -80,7 +79,7 @@ def add_task_type():
         return redirect(url_for('task_blueprint.add_task'))
     return redirect(url_for('task_blueprint.add_task'))
 # Add New organization
-@task_blueprint.route('/organization/add', methods=['POST'])
+@task_blueprint.route('/organization', methods=['POST'])
 def add_organization():
     form = OrganizationForm(request.form)
     if form.validate_on_submit():
@@ -91,7 +90,7 @@ def add_organization():
         return redirect(url_for('task_blueprint.add_task'))
     return redirect(url_for('task_blueprint.add_task'))
 # Add New Place
-@task_blueprint.route('/place/add', methods=['POST'])
+@task_blueprint.route('/place', methods=['POST'])
 def add_place():
     form = PlaceForm(request.form)
     if form.validate_on_submit():
@@ -102,7 +101,7 @@ def add_place():
         return redirect(url_for('task_blueprint.add_task'))
     return redirect(url_for('task_blueprint.add_task'))
 
-
+# Check Search Fileds
 def check_fields (created_from, created_to):
     if created_from:
         created_from = datetime.strptime(request.args.get('created_from'),'%Y-%m-%d')

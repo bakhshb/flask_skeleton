@@ -2,10 +2,9 @@ from flask import Blueprint, render_template, flash, redirect, url_for, request,
 from flask_login import login_required, current_user
 from flask_babelex import _
 from flask_skeleton import csrf
+from .forms import MessageForm, ReplyForm
 from ..model import db, User, Message
 from ..util import email
-from ..forms.message import MessageForm, ReplyForm
-
 
 # ...
 message_blueprint = Blueprint('message_blueprint', __name__)

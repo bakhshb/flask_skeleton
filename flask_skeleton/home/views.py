@@ -2,7 +2,7 @@ from flask import Blueprint, render_template, session, redirect, \
                 url_for, send_from_directory, request, abort, current_app
 import os
 from flask_login import login_required
-from .page import view_flatpage
+from ..page.views import view_flatpage
 from ..model import db, Page
 
 home_blueprint = Blueprint('home_blueprint', __name__)

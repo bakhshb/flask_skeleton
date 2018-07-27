@@ -1,8 +1,8 @@
 from flask import Blueprint, render_template, flash, redirect, url_for, request
 from flask_login import current_user
 from flask_babelex import _
+from .forms import RegistrationForm
 from ..model import db, User
-from ..forms.user import RegistrationForm
 from ..util import already_logged_in
 
 
