@@ -19,7 +19,7 @@
     <tr class="table-warning">
       <th scope="row">{{post.id}}</th>
       <td>{{post.subject}}</td>
-      <td>{{post.timestamp|timesince}}</td>
+      <td >{{momentjs(post.timestamp).fromNow()}}</td>
       <td>{{post.sender.firstname}}</td>
       <td><a href="{{url_for('message_blueprint.view_message', msg_id= post.id, parent_id=post.parent_id)}}"><i class="fas fa-eye"></i></a></td>
     </tr>
@@ -27,7 +27,7 @@
     <tr>
       <th scope="row">{{post.id}}</th>
       <td>{{post.subject}}</td>
-      <td>{{post.timestamp|timesince}}</td>
+      <td>{{momentjs(post.timestamp).fromNow()}}</td>
       <td>{{post.sender.firstname}}</td>
       <td><a href="{{url_for('message_blueprint.view_message', msg_id= post.id, parent_id=post.parent_id)}}"><i class="fas fa-eye"></i></a></td>
     </tr>

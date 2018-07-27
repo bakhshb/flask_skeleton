@@ -5,7 +5,7 @@ class Config(object):
     SECRET_KEY = 'Sm9obiBTY2hyb20ga2lja3MgYXNz'
     STRIPE_API_KEY = 'SmFjb2IgS2FwbGFuLU1vc3MgaXMgYSBoZXJv'
     # Post Per Page
-    POSTS_PER_PAGE = 2
+    POSTS_PER_PAGE = 10
     # ADMIN USERNAME
     ADMIN_ROLE='Admin'
     ADMIN_FIRSTNAME='Admin'

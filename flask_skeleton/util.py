@@ -17,6 +17,7 @@ def already_logged_in(f):
         else:
             return f(*args, **kwargs)
     return wrap
+
 # Email
 mail = Mail()
 def send_async_email(app, msg):
@@ -74,30 +75,3 @@ def page_forbidden(e):
 
 def page_server_error(e):
     return render_template('/500.html'), 500
-
-# Template Filter
-def timesince(dt, default="just now"):
-    """
-    Returns string representing "time since" e.g.
-    3 days ago, 5 hours ago etc.
-    """
-
-    now = datetime.utcnow()
-    diff = now - dt
-
-    periods = (
-        (diff.days / 365, _('year'), _('years')),
-        (diff.days / 30, _('month'), _('months')),
-        (diff.days / 7, _('week'), _('weeks')),
-        (diff.days, _('day'), _('days')),
-        (diff.seconds / 3600, _('hour'), _('hours')),
-        (diff.seconds / 60, _('minute'), _('minutes')),
-        (diff.seconds, _('second'), _('seconds')),
-    )
-
-    for period, singular, plural in periods:
-
-        if period:
-            return _(u'%(num)d %(day)s ago',num=period, day=(singular if period == 1 else plural))
-
-    return default

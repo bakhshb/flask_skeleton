@@ -1,6 +1,6 @@
-graft public/static
-graft public/templates
-graft public/translations
-include public/*.yml
-include public/*.json
+graft flask_skeleton/static
+graft flask_skeleton/templates
+graft flask_skeleton/translations
+include flask_skeleton/*.yml
+include flask_skeleton/*.json
 global-exclude *.pyc

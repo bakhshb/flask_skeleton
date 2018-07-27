@@ -5,15 +5,16 @@ from flask_security import Security, SQLAlchemyUserDatastore
 from flask_wtf.csrf import CSRFProtect
 from flask_assets import Environment
 from webassets.loaders import YAMLLoader
+from flask_sslify import SSLify
 from .util import mail,inject_current_language, inject_all_languages, inject_google_token, \
-                         inject_total_notification, inject_tasks, bad_request, page_not_found, page_forbidden, page_server_error,\
-                         timesince
+                         inject_total_notification, inject_tasks, bad_request, page_not_found, page_forbidden, page_server_error
 from .model import  db, User, Role, Task, TaskType, Organization, Place, Page, Message
 csrf = CSRFProtect()
 from .views import home, message, page, profile, task, user
 from .views.admin import AdminIndexCustomView, UserCustomView,\
  RoleCustomView, TaskCustomView, TaskTypeCustomView, OrganizationCustomView,\
  PlaceCustomView, PageCustomView, ReturnToMainView
+from .momentjs import momentjs
 import os, logging, logging.config, yaml
 
 from .config import app_config
@@ -42,6 +43,8 @@ def create_app(ENV_SETTING):
     mail.init_app(app)
     # csrf
     csrf.init_app(app)
+    #SSL
+    sslify = SSLify(app)
     #setting babelex
     babel = Babel(app)
     @babel.localeselector
@@ -64,7 +67,7 @@ def create_app(ENV_SETTING):
     app.context_processor(inject_tasks)
 
     # Template Filter
-    app.jinja_env.filters['timesince'] = timesince
+    app.jinja_env.globals['momentjs'] = momentjs
 
     # Setup Flask-Security
     user_datastore = SQLAlchemyUserDatastore(db, User, Role)
@@ -90,6 +93,7 @@ def create_app(ENV_SETTING):
     app.register_error_handler(403, page_forbidden)
     app.register_error_handler(500, page_server_error)
     app.logger.info('app started')
+
     return app
 
 # Blueprint

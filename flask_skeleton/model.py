@@ -4,6 +4,7 @@ import sqlalchemy as sa
 from sqlalchemy.sql import func
 from sqlalchemy_continuum import make_versioned,  plugins
 from passlib.hash import sha256_crypt
+from datetime import datetime
 
 db = SQLAlchemy()
 
@@ -16,8 +17,8 @@ user_roles = db.Table('user_roles',
 )
 
 class Base (object):
-    created_at = db.Column(db.DateTime(timezone=True), server_default=func.now())
-    updated_at = db.Column(db.DateTime(timezone=True), onupdate=func.now())
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    updated_at = db.Column(db.DateTime, onupdate=datetime.utcnow)
 # User Model
 class User(Base, db.Model, UserMixin):
     #version
@@ -31,8 +32,8 @@ class User(Base, db.Model, UserMixin):
     email = db.Column(db.String(128), unique=True, nullable=False)
     password = db.Column(db.String(255), nullable=False, server_default='')
     # Trackable
-    last_login_at = db.Column(db.DateTime(timezone=True))
-    current_login_at = db.Column(db.DateTime(timezone=True))
+    last_login_at = db.Column(db.DateTime)
+    current_login_at = db.Column(db.DateTime)
     last_login_ip = db.Column(db.String(100))
     current_login_ip = db.Column(db.String(100))
     login_count = db.Column(db.Integer)
@@ -87,8 +88,8 @@ class Task (Base,db.Model):
     organization = db.relationship('Organization', lazy=True)
     place_id = db.Column(db.Integer(), db.ForeignKey('places.id', ondelete='CASCADE'))
     place = db.relationship('Place', lazy=True)
-    task_from = db.Column(db.DateTime(timezone=True))
-    task_to = db.Column(db.DateTime(timezone=True))
+    task_from = db.Column(db.DateTime)
+    task_to = db.Column(db.DateTime)
     result = db.Column(db.Text)
 
     def __repr__(self):
@@ -146,7 +147,7 @@ class Message(db.Model):
     subject = db.Column(db.String(50))
     body = db.Column(db.String(140))
     is_read = db.Column(db.Boolean(), server_default='0')
-    timestamp = db.Column(db.DateTime, index=True, server_default=func.now())
+    timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow())
 
     def __repr__(self):
         return '<Message {}>'.format(self.body)

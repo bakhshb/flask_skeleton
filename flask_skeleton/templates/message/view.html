@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% block style %}
+{{ super() }}
 <link rel="stylesheet" href="{{url_for('static', filename='chat.css')}}">
 {% endblock %}
 {% block body %}
@@ -22,11 +23,11 @@
                     <ul class="list-unstyled chat">
                       {% for msg in messages %}
                         <li class="d-flex justify-content-between mb-4">
-                            <img src="http://placehold.it/50/55C1E7/fff&text=U" alt="avatar" class="avatar rounded-circle mr-2 ml-lg-3 ml-0 z-depth-1">
+                            <img src="https://placehold.it/50/55C1E7/fff&text=U" alt="avatar" class="avatar rounded-circle mr-2 ml-lg-3 ml-0 z-depth-1">
                             <div class="chat-body white p-3 ml-2 z-depth-1">
                                 <div class="header">
                                     <strong class="primary-font">{{msg.sender.firstname + ' ' + msg.sender.lastname}}</strong>
-                                    <small class="pull-right text-muted"><i class="fa fa-clock-o"></i> {{msg.timestamp|timesince}}</small>
+                                    <small class="pull-right text-muted"><i class="fa fa-clock-o"></i> {{momentjs(msg.timestamp).fromNow()}}</small>
                                 </div>
                                 <hr class="w-100">
                                 <p class="mb-0">
