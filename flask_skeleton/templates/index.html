@@ -23,4 +23,8 @@ Home
   </div>
 </div>
 {% endif %}
+<script>
+var d = moment.tz.guess();
+document.cookie="time="+d;
+</script>
 {% endblock %}

@@ -17,8 +17,8 @@ user_roles = db.Table('user_roles',
 )
 
 class Base (object):
-    created_at = db.Column(db.DateTime, default=datetime.utcnow)
-    updated_at = db.Column(db.DateTime, onupdate=datetime.utcnow)
+    created_at = db.Column(db.DateTime(timezone=True), default=datetime.utcnow)
+    updated_at = db.Column(db.DateTime(timezone=True), onupdate=datetime.utcnow)
 # User Model
 class User(Base, db.Model, UserMixin):
     #version
@@ -133,8 +133,8 @@ class Page(Base, db.Model):
     url = db.Column(db.String(50), unique=True, nullable=False)
     title = db.Column(db.String(50), nullable=False)
     content = db.Column(db.Text)
-    publish = db.Column('Publish', db.Boolean(), nullable=True, server_default='0')
-    publish_at = db.Column(db.DateTime(), nullable=True)
+    publish = db.Column(db.Boolean(), nullable=True, server_default='0')
+    publish_at = db.Column(db.DateTime, nullable=True)
 
 # Messages Model
 class Message(db.Model):
@@ -147,7 +147,7 @@ class Message(db.Model):
     subject = db.Column(db.String(50))
     body = db.Column(db.String(140))
     is_read = db.Column(db.Boolean(), server_default='0')
-    timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow())
+    timestamp = db.Column(db.DateTime(timezone=True), index=True, default=datetime.utcnow())
 
     def __repr__(self):
         return '<Message {}>'.format(self.body)

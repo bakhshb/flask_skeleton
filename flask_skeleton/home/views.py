@@ -4,6 +4,7 @@ import os
 from flask_login import login_required
 from ..page.views import view_flatpage
 from ..model import db, Page
+from datetime import datetime
 
 home_blueprint = Blueprint('home_blueprint', __name__)
 
@@ -16,6 +17,8 @@ def favicon():
 @home_blueprint.route('/')
 @login_required
 def index():
+    print("browser time: ", request.cookies.get("time"))
+    
     index = Page.query.filter_by(url='home').first()
     if index:
         return view_flatpage(index.url)
