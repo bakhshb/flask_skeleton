@@ -10,15 +10,17 @@ db = SQLAlchemy()
 
 #version
 make_versioned( plugins=[plugins.FlaskPlugin()])
-
+# User Role Association
 user_roles = db.Table('user_roles',
                 db.Column('user_id', db.Integer, db.ForeignKey('users.id'), primary_key=True),
                 db.Column('role_id', db.Integer, db.ForeignKey('roles.id'), primary_key=True)
 )
 
+# Basic Class
 class Base (object):
     created_at = db.Column(db.DateTime(timezone=True), default=datetime.utcnow)
     updated_at = db.Column(db.DateTime(timezone=True), onupdate=datetime.utcnow)
+
 # User Model
 class User(Base, db.Model, UserMixin):
     #version
@@ -48,9 +50,6 @@ class User(Base, db.Model, UserMixin):
     messages_sent = db.relationship('Message', foreign_keys='Message.sender_id', backref='sender', lazy='dynamic')
     messages_received = db.relationship('Message', foreign_keys='Message.recipient_id', backref='recipient', lazy='dynamic')
 
-    def __repr_(self):
-        return '<User %r>' % (self.email)
-
     def __str__(self):
         return self.firstname + ' '+ self.lastname
 
@@ -66,6 +65,7 @@ class User(Base, db.Model, UserMixin):
     def hash_password(self, password):
         self.password = sha256_crypt.hash(password)
 
+
 # Define the Role data-model
 class Role(db.Model, RoleMixin):
     #version
@@ -73,10 +73,10 @@ class Role(db.Model, RoleMixin):
     id = db.Column(db.Integer(), primary_key=True)
     name = db.Column(db.String(50), unique=True)
 
-    def __repr_(self):
-        return '<Role %r>' % (self.name)
     def __str__(self):
         return self.name
+
+
 # Tasks Model
 class Task (Base,db.Model):
     __tablename__='tasks'
@@ -88,9 +88,9 @@ class Task (Base,db.Model):
     organization = db.relationship('Organization', lazy=True)
     place_id = db.Column(db.Integer(), db.ForeignKey('places.id', ondelete='CASCADE'))
     place = db.relationship('Place', lazy=True)
-    task_from = db.Column(db.DateTime)
-    task_to = db.Column(db.DateTime)
-    result = db.Column(db.Text)
+    start_date = db.Column(db.DateTime)
+    end_date = db.Column(db.DateTime)
+    results = db.Column(db.Text)
 
     def __repr__(self):
      return '{0}(id={1})'.format(self.__class__.__name__, self.id)
@@ -101,8 +101,6 @@ class TaskType(Base,db.Model):
     id = db.Column(db.Integer(), primary_key=True)
     name = db.Column(db.String(50), nullable=False)
 
-    def __repr__(self):
-     return '<TaskType %r>' % (self.name)
     def __str__(self):
         return self.name
 
@@ -112,20 +110,18 @@ class Organization(Base,db.Model):
     id = db.Column(db.Integer(), primary_key=True)
     name = db.Column(db.String(50), nullable=False)
 
-    def __repr__(self):
-     return '<Organization %r>' % (self.name)
     def __str__(self):
         return self.name
+
 # Places Model
 class Place(Base,db.Model):
     __tablename__='places'
     id = db.Column(db.Integer(), primary_key=True)
     name = db.Column(db.String(50), nullable=False)
 
-    def __repr__(self):
-     return '<Place %r>' % (self.name)
     def __str__(self):
         return self.name
+
 # Pages Model
 class Page(Base, db.Model):
     __tablename__='pages'
@@ -149,8 +145,6 @@ class Message(db.Model):
     is_read = db.Column(db.Boolean(), server_default='0')
     timestamp = db.Column(db.DateTime(timezone=True), index=True, default=datetime.utcnow())
 
-    def __repr__(self):
-        return '<Message {}>'.format(self.body)
     def __str__(self):
         return self.body
 

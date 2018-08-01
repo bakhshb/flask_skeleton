@@ -71,15 +71,15 @@
     </div>
 
     <div class="md-form">
-      {% if register_user_form.confirm.errors %}
-      {{ register_user_form.confirm(class="form-control is-invalid") }}
+      {% if register_user_form.confirm_password.errors %}
+      {{ register_user_form.confirm_password(class="form-control is-invalid") }}
       {% else %}
-      {{ register_user_form.confirm(class="form-control") }}
+      {{ register_user_form.confirm_password(class="form-control") }}
       {% endif %}
       <div class="invalid-feedback">
-        {{ register_user_form.confirm.errors[0] }}
+        {{ register_user_form.confirm_password.errors[0] }}
       </div>
-      {{register_user_form.confirm.label()}}
+      {{register_user_form.confirm_password.label()}}
     </div>
 
     <div class="text-center mt-4">

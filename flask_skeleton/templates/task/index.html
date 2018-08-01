@@ -24,18 +24,35 @@
 
     </div>
     <div class="col-md-10">
-      <form method="GET" action="{{url_for('task_blueprint.search_task')}}">
+      <form method="POST" action="{{url_for('task_blueprint.search_task')}}">
+        {{ search_form.hidden_tag() }}
         <div class="form-group">
           {{search_form.search.label(class="filter-col")}}
           {{ search_form.search(placeholder=_("Search"), class="form-control") }}
         </div>
         <div class="form-group">
-          {{search_form.created_from.label(class="filter-col")}}
-          {{ search_form.created_from(placeholder=_("From"), class="form-control " , type="date") }}
+          {% if search_form.start_date.errors %}
+          {{search_form.start_date.label(class="filter-col")}}
+          {{ search_form.start_date(placeholder=_("From"), class="form-control is-invalid" , type="date") }}
+          {%else%}
+          {{search_form.start_date.label(class="filter-col")}}
+          {{ search_form.start_date(placeholder=_("From"), class="form-control " , type="date") }}
+          {%endif%}
+          <div class="invalid-feedback">
+          {{ search_form.start_date.errors[0] }}
+        </div>
         </div>
         <div class="form-group">
-          {{search_form.created_to.label(class="filter-col")}}
-          {{ search_form.created_to(placeholder=_("To"), class="form-control" , Type="date") }}
+          {% if search_form.end_date.errors %}
+          {{search_form.end_date.label(class="filter-col")}}
+          {{ search_form.end_date(placeholder=_("To"), class="form-control is-invalid" , Type="date") }}
+          {%else%}
+          {{search_form.end_date.label(class="filter-col")}}
+          {{ search_form.end_date(placeholder=_("To"), class="form-control" , Type="date") }}
+          {%endif%}
+          <div class="invalid-feedback">
+          {{ search_form.end_date.errors[0] }}
+        </div>
         </div>
         <div class="form-group ">
           <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
@@ -58,9 +75,9 @@
         <th scope="col">{{_('Task Type')}}</th>
         <th scope="col">{{_('Organization')}}</th>
         <th scope="col">{{_('Place')}}</th>
-        <th scope="col">{{_('Task From')}}</th>
-        <th scope="col">{{_('Task To')}}</th>
-        <th scope="col">{{_('Result')}}</th>
+        <th scope="col">{{_('Start Date')}}</th>
+        <th scope="col">{{_('End Date')}}</th>
+        <th scope="col">{{_('Results')}}</th>
         <th scope="col">{{_('created at')}}</th>
         <th></th>
       </tr>
@@ -75,9 +92,9 @@
         <td>{{task.task_type.name}}</td>
         <td>{{task.organization.name}}</td>
         <td>{{task.place.name}}</td>
-        <td>{{task.task_from.strftime('%Y-%m-%d')}}</td>
-        <td>{{task.task_to.strftime('%Y-%m-%d')}}</td>
-        <td>{{task.result}}</td>
+        <td>{{task.start_date.strftime('%Y-%m-%d')}}</td>
+        <td>{{task.end_date.strftime('%Y-%m-%d')}}</td>
+        <td>{{task.results}}</td>
         <td>{{task.created_at.strftime('%Y-%m-%d')}}</td>
         <td><a href="" ><i class="fas fa-pencil-alt"></i></a></td>
         {# <td><a href="/delete/user/{{user.id}}" class="btn btn-danger" role="button">Delete</a></td> #}

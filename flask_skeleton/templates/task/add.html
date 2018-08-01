@@ -128,38 +128,38 @@
 
       <div class="form-row">
         <div class="form-group col-md-6">
-          {{task_form.task_from.label}}
-          {% if task_form.task_from.errors %}
-          {{ task_form.task_from(type="date", class="form-control is-invalid") }}
+          {{task_form.start_date.label}}
+          {% if task_form.start_date.errors %}
+          {{ task_form.start_date(type="date", class="form-control is-invalid") }}
           {% else %}
-          {{ task_form.task_from(type="date", class="form-control ") }}
+          {{ task_form.start_date(type="date", class="form-control ") }}
           {% endif %}
           <div class="invalid-feedback">
-            {{ task_form.task_from.errors[0] }}
+            {{ task_form.start_date.errors[0] }}
           </div>
         </div>
         <div class="form-group col-md-6">
-          {{task_form.task_to.label}}
-          {% if task_form.task_to.errors %}
-          {{ task_form.task_to(type="date", class="form-control is-invalid") }}
+          {{task_form.end_date.label}}
+          {% if task_form.end_date.errors %}
+          {{ task_form.end_date(type="date", class="form-control is-invalid") }}
           {% else %}
-          {{ task_form.task_to(type="date", class="form-control") }}
+          {{ task_form.end_date(type="date", class="form-control") }}
           {% endif %}
           <div class="invalid-feedback">
-            {{ task_form.task_to.errors[0] }}
+            {{ task_form.end_date.errors[0] }}
           </div>
         </div>
       </div>
 
       <div class="form-group">
-        {{task_form.result.label}}
-        {% if task_form.result.errors %}
-        {{ task_form.result(placeholder=_("Result"), class="textarea") }}
+        {{task_form.results.label}}
+        {% if task_form.results.errors %}
+        {{ task_form.results(placeholder=_("Result"), class="textarea") }}
         {% else %}
-        {{ task_form.result(placeholder=_("Result"), class="textarea") }}
+        {{ task_form.results(placeholder=_("Result"), class="textarea") }}
         {% endif %}
         <div class="invalid-feedback">
-          {{ task_form.result.errors[0] }}
+          {{ task_form.results.errors[0] }}
         </div>
       </div>
 

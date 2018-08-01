@@ -106,7 +106,7 @@ class TaskCustomView(ModelViewCustom):
     can_edit = True
     can_delete = False
     can_export = True
-    column_searchable_list = ['created_at', 'task_from', 'task_to',]
+    column_searchable_list = ['created_at', 'start_date', 'end_date',]
     form_excluded_columns = ['created_at', 'updated_at',]
     form_widget_args = {
         'result': {

@@ -55,10 +55,10 @@ def add_task ():
         task_type = form.task_type.data
         organization = form.organization.data
         place = form.place.data
-        task_from = form.task_from.data
-        task_to = form.task_to.data
-        result = form.result.data
-        task = Task(user_id =user_id, task_type_id=task_type, organization_id=organization, place_id=place, task_from=task_from, task_to=task_to, result=result)
+        start_date = form.start_date.data
+        end_date = form.end_date.data
+        results= form.results.data
+        task = Task(user_id =user_id, task_type_id=task_type, organization_id=organization, place_id=place, start_date=start_date, end_date=end_date, results=results)
         db.session.add(task)
         db.session.commit()
         return redirect(url_for('task_blueprint.get_task'))
@@ -101,42 +101,16 @@ def add_place():
         return redirect(url_for('task_blueprint.add_task'))
     return redirect(url_for('task_blueprint.add_task'))
 
-# Check Search Fileds
-def check_fields (created_from, created_to):
-    if created_from:
-        created_from = datetime.strptime(request.args.get('created_from'),'%Y-%m-%d')
-        if created_to:
-            created_to = datetime.strptime(request.args.get('created_to'),'%Y-%m-%d')
-            return created_from, created_to
-        else:
-            created_to = datetime(created_from.year, created_from.month +1, created_from.day+5)
-            return created_from, created_to
-
-    elif created_to:
-        created_to = datetime.strptime(request.args.get('created_to'),'%Y-%m-%d')
-        created_from = datetime(created_to.year, created_to.month -1, created_to.day)
-        return created_from, created_to
-    else:
-        today = datetime.today()
-        created_from = datetime(today.year, today.month, 1)
-        created_to = datetime(today.year, today.month +1, 1)
-        return created_from, created_to
 
 # Search
-@task_blueprint.route('/search', methods=['GET'])
+@task_blueprint.route('/search', methods=['POST'])
 def search_task ():
     # Variables
     form = SearchForm(request.form)
-    search = request.args.get('search')
-    created_from = request.args.get('created_from')
-    created_to = request.args.get('created_to')
-    # Check if fields are empty
-    if search == '' and  created_from == '' and  created_to == '':
-        tasks = Task.query.all()
+    tasks = Task.query.all()
+    if form.validate_on_submit():
+        tasks = Task.query.join(User).join(TaskType).join(Organization).join(Place).filter((User.firstname == form.search.data) |\
+                (User.lastname == form.search.data)|(TaskType.name == form.search.data)| (Organization.name == form.search.data) | (Place.name == form.search.data) |\
+                (Task.created_at.between( form.start_date.data, form.end_date.data))).all()
         return render_template('task/index.html', tasks=tasks, search_form=form)
-    created_from, created_to = check_fields (created_from, created_to)
-    # Task Search
-    tasks = Task.query.join(User).join(TaskType).join(Organization).join(Place).filter((User.firstname == search) |\
-            (User.lastname == search)|(TaskType.name == search)| (Organization.name == search) | (Place.name == search) |\
-            (Task.created_at.between( created_from, created_to))).all()
     return render_template('task/index.html', tasks=tasks, search_form=form)
