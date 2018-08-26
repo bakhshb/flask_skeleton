@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, flash, redirect, url_for, request, current_app
 from flask_login import login_required, current_user
 from flask_babelex import _
-from flask_skeleton import csrf
+from app import csrf
 from .forms import MessageForm, ReplyForm
 from ..model import db, User, Message
 from ..util import email
